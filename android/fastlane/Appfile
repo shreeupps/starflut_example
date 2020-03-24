@@ -1,0 +1,2 @@
+json_key_file("C:/Users/jyoth/Downloads/testfastlaneapp.json") # Path to the json secret file - Follow https://docs.fastlane.tools/actions/supply/#setup to get one
+package_name("com.keagan.flutter_python") # e.g. com.krausefx.app

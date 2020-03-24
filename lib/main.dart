@@ -1,73 +1,35 @@
+
 import 'package:flutter/material.dart';
 import 'dart:async';
 import 'package:starflut/starflut.dart';
 
-void main() => runApp(new MyApp());
-
-class MyApp extends StatelessWidget {
-  // This widget is the root of your application.
+void main() => runApp( SPR() );
+class SPR extends StatefulWidget
+{
   @override
-  Widget build(BuildContext context) {
-    return new MaterialApp(
-      title: 'Flutter Demo',
-      theme: new ThemeData(
-        // This is the theme of your application.
-        //
-        // Try running your application with "flutter run". You'll see the
-        // application has a blue toolbar. Then, without quitting the app, try
-        // changing the primarySwatch below to Colors.green and then invoke
-        // "hot reload" (press "r" in the console where you ran "flutter run",
-        // or press Run > Flutter Hot Reload in IntelliJ). Notice that the
-        // counter didn't reset back to zero; the application is not restarted.
-        primarySwatch: Colors.blue,
-      ),
-      home: new MyHomePage(title: 'Python Console'),
-    );
-  }
+  State<StatefulWidget> createState() => dash();
+
 }
+class dash extends State< SPR >
+{
 
-class MyHomePage extends StatefulWidget {
-  MyHomePage({Key key, this.title}) : super(key: key);
+   var data;
 
-  // This widget is the home page of your application. It is stateful, meaning
-  // that it has a State object (defined below) that contains fields that affect
-  // how it looks.
-
-  // This class is the configuration for the state. It holds the values (in this
-  // case the title) provided by the parent (in this case the App widget) and
-  // used by the build method of the State. Fields in a Widget subclass are
-  // always marked "final".
-
-  final String title;
-
-  @override
-  _MyHomePageState createState() => new _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
-  StarSrvGroupClass srvGroup;
-  String _outputString = "python 3.6";
-
-  _MyHomePageState()
-  {
-    _initStarCore();
-  }
-
-
-  void _initStarCore() async{
+  Future<void> testCallPython()
+  async {
     StarCoreFactory starcore = await Starflut.getFactory();
     StarServiceClass Service = await starcore.initSimple("test", "123", 0, 0, []);
     await starcore.regMsgCallBackP(
             (int serviceGroupID, int uMsg, Object wParam, Object lParam) async{
-          if( uMsg == Starflut.MSG_DISPMSG || uMsg == Starflut.MSG_DISPLUAMSG ){
-            ShowOutput(wParam);
-          }
           print("$serviceGroupID  $uMsg   $wParam   $lParam");
           return null;
         });
-    srvGroup = await Service["_ServiceGroup"];
+    StarSrvGroupClass SrvGroup = await Service["_ServiceGroup"];
+
+/*---script python--*/
     bool isAndroid = await Starflut.isAndroid();
     if( isAndroid == true ){
+      await Starflut.copyFileFromAssets("testpy.py", "flutter_assets/starfiles","flutter_assets/starfiles");
       String libraryDir = await Starflut.getNativeLibraryDir();
       String docPath = await Starflut.getDocumentPath();
       if( libraryDir.indexOf("arm64") > 0 ){
@@ -81,68 +43,70 @@ class _MyHomePageState extends State<MyHomePage> {
       }
       await Starflut.copyFileFromAssets("python3.6.zip", "flutter_assets/starfiles",null);  //desRelatePath must be null
     }
-    if( await srvGroup.initRaw("python36", Service) == true ){
-      _outputString = "init starcore and python 3.6 successfully";
-    }else{
-      _outputString = "init starcore and python 3.6 failed";
-    }
+//    if( await SrvGroup.initRaw("python36", Service) == true ){
+//      _outputString = "init starcore and python 3.6 successfully";
+//    }else{
+//      _outputString = "init starcore and python 3.6 failed";
+//    }
 
-    setState(() {
-      // This call to setState tells the Flutter framework that something has
-      // changed in this State, which causes it to rerun the build method below
-      // so that the display can reflect the updated values. If we changed
-      // _counter without calling setState(), then the build method would not be
-      // called again, and so nothing would appear to happen.
-      //_counter++;
-    });
-  }
+    String docPath = await Starflut.getDocumentPath();
+    print("docPath = $docPath");
 
-  void ShowOutput(String Info) async{
-    if( Info == null || Info.length == 0)
-      return;
-    _outputString = _outputString + "\n" + Info;
-    setState((){
+    String resPath = await Starflut.getResourcePath();
+    print("resPath = $resPath");
 
-    });
-  }
+    dynamic rr1 = await SrvGroup.initRaw("python36", Service);
 
-  void runScriptCode() async{
-    await srvGroup.runScript("python", "testpy.py", null);
+    print("initRaw = $rr1");
+    var Result = await SrvGroup.loadRawModule("python", "", resPath + "/flutter_assets/starfiles/" + "testpy.py", false);
+    print( Result );
+    print("loadRawModule = $Result");
 
-    setState((){
+    dynamic python = await Service.importRawContext("python", "", false, "");
+    // print("python = "+ await python.getString());
 
-    });
+    StarObjectClass retobj = await python.call("tt", ["hello ", "world"]);
+    print(await retobj[0]);
+    print(await retobj[1]);
+
+    print(await python["g1"]);
+
+//    StarObjectClass yy = await python.call("yy", ["hello ", "world", 123]);
+//    print(await yy.call("__len__",[]));
+
+    StarObjectClass multiply = await Service.importRawContext("python", "Multiply", true, "");
+    StarObjectClass multiply_inst = await multiply.newObject(["", "", 33, 44]);
+    print(await multiply_inst.getString());
+
+    data = await multiply_inst.call("multiply", ["",111, 222]);
+    print(data);
+
+    await SrvGroup.clearService();
+    await starcore.moduleExit();
   }
 
   @override
   Widget build(BuildContext context) {
-    return new MaterialApp(
-      home: new Scaffold(
-        appBar: new AppBar(
-          title: const Text('Plugin example app'),
-        ),
-        body: new Center(
-          child: new Column(
-              children: <Widget>[
-          new RaisedButton(
-            child: const Text('Connect with Twitter'),
-            color: Theme.of(context).accentColor,
-            elevation: 4.0,
-            splashColor: Colors.blueGrey,
-            onPressed: runScriptCode
+    return MaterialApp(
+      home: Scaffold(
+        body: Container(
+          child: Center(
+            child: Text( data.toString() ),
           ),
-          new Container(
-            alignment: Alignment.topLeft,
-            child : new Text(
-              '$_outputString',
-              style: new TextStyle(color:Colors.blue),
-            ),
-          ),
-        ]
-        ),
         ),
       ),
     );
   }
-}
 
+  @override
+  void initState() {
+    super.initState();
+    testCallPython().then(( value){
+      print( '----------------Function returned---------------------' );
+      setState(() {
+
+      });
+    });
+
+  }
+}

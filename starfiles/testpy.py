@@ -2,9 +2,10 @@ def tt(a,b) :
     print(a,b)
     return 666,777
 g1 = 123
-def yy(a,b,z) :
-    print(a,b,z)
-    return {'jack': 4098, 'sape': 4139}
+
+def yy(a) :
+    print(a)
+    return a + "returned from python script"
 
 class Multiply :
     def __init__(self,x,y) :

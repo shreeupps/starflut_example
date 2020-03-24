@@ -3,7 +3,12 @@
 //
 
 #import "GeneratedPluginRegistrant.h"
+
+#if __has_include(<starflut/StarflutPlugin.h>)
 #import <starflut/StarflutPlugin.h>
+#else
+@import starflut;
+#endif
 
 @implementation GeneratedPluginRegistrant
 

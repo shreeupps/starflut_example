@@ -1,0 +1,108 @@
+# This file contains the fastlane.tools configuration
+# You can find the documentation at https://docs.fastlane.tools
+#
+# For a list of all available actions, check out
+#
+#     https://docs.fastlane.tools/actions
+#
+# For a list of all available plugins, check out
+#
+#     https://docs.fastlane.tools/plugins/available-plugins
+#
+
+# Uncomment the line if you want fastlane to automatically update itself
+# update_fastlane
+
+default_platform(:android)
+
+platform :android do
+  desc "Runs all the tests"
+  lane :test do
+    gradle(task: "test")
+  end
+
+#  desc "Submit a new Beta Build to Crashlytics Beta"
+#  lane :beta do
+#    gradle(task: "clean assembleRelease")
+#    crashlytics
+#  end
+
+  lane :promoteToProd do
+#      versions = google_play_track_version_codes(track: "production")
+#      version_code = versions[0]
+
+      supply(
+        skip_upload_changelogs: true,
+        skip_upload_apk: true,
+        skip_upload_metadata: false,
+        skip_upload_images: false,
+        skip_upload_screenshots: false,
+        skip_upload_aab: true
+#        version_code: version_code
+      )
+   end
+
+  lane :bump_version_code do
+    path = '../app/build.gradle'
+    re = /versionCode\s+(\d+)/
+
+    s = File.read(path)
+    versionCode = s[re, 1].to_i
+    s[re, 1] = (versionCode + 1).to_s
+
+    f = File.new(path, 'w')
+    f.write(s)
+    f.close
+  end
+
+#  desc “Runs all the tests”
+#  lane :test do
+#    increment_version_code(
+#    gradle_file_path: “app/build.gradle”
+#    )
+#    gradle(task: “test”)
+#  end
+  
+  desc “Submit a new Beta Build to Crashlytics Beta”
+  lane :beta do
+    increment_version_code(
+    gradle_file_path: “app/build.gradle”)
+    gradle(task: “clean assembleRelease”)
+     
+    store_password = prompt(text: “Signing Store Password: “, secure_text: true)
+    key_password = prompt(text: “Alias Key Password: “, secure_text: true)
+    releaseFilePath = File.join(Dir.pwd, “..”, “my-release-key.keystore”)
+    gradle(task: ‘assemble’,
+    build_type: ‘Release’,
+    print_command: false,)
+    upload_to_play_store(track: ‘internal’)
+  end
+  
+  desc "Build debug and test APK for screenshots"
+  lane :build_for_screengrab do
+    gradle(
+      task: 'clean'
+    )
+    build_android_app(
+      task: 'assemble',
+      build_type: 'Debug'
+    )
+    build_android_app(
+      task: 'assemble',
+      build_type: 'AndroidTest'
+    )
+  end
+
+  private_lane :slack do |options|
+    message = options[:message]
+    success = options[:success]
+    payload = options[:payload]
+    version     = get_version_number(xcodeproj: "Client.xcodeproj")
+    build       = get_build_number(xcodeproj: "Client.xcodeproj")
+    slack(
+      message: message + " :" + version + ":" + build,
+      slack_url: "https://app.slack.com/client/T03TG4P8R/DLH8RLWQJ",    
+      success: success,
+      payload: payload)
+  end
+end
