@@ -1,7 +1,7 @@
 <component name="libraryTable">
   <library name="Flutter Plugins" type="FlutterPluginsLibraryType">
     <CLASSES>
-      <root url="file://C:/starcore_for_flutter/starflut" />
+      <root url="file://$PROJECT_DIR$/starflut" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />
