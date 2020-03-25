@@ -29,7 +29,7 @@ dev_dependencies:
     sdk: flutter
 
   starflut:
-    path: ../starcore_for_flutter/starflut
+    path: https://github.com/srplab/starcore_for_flutter
 
 
 # For information on the generic Dart part of this file, see the
