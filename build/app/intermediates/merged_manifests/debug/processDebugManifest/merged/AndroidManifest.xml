@@ -34,8 +34,7 @@
         android:appComponentFactory="android.support.v4.app.CoreComponentFactory"
         android:debuggable="true"
         android:icon="@mipmap/ic_launcher"
-        android:label="flutter_python"
-        android:testOnly="true" >
+        android:label="flutter_python" >
         <activity
             android:name="com.keagan.flutter_python.MainActivity"
             android:configChanges="orientation|keyboardHidden|keyboard|screenSize|locale|layoutDirection|fontScale|screenLayout|density|uiMode"
