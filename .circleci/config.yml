@@ -1,4 +1,4 @@
-version: 2.1.4
+version: 2
 jobs:
   build:
     docker:
@@ -12,6 +12,7 @@ jobs:
     steps:
       - checkout
       - run: cd android
+      - run: docker build 
       - restore_cache:
           key: 1-gems-{{ checksum "android/Gemfile.lock" }}
       
