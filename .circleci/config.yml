@@ -11,7 +11,7 @@ jobs:
     
     steps:
       - checkout
-      - run: cd android
+      - run: cd C:\Users\jyoth\ashish\Bitbucket\matchme\starflut_example\android
       - restore_cache:
           key: 1-gems-{{ checksum "Gemfile.lock" }}
       
