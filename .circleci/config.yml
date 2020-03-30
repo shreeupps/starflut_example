@@ -15,7 +15,7 @@ jobs:
       - restore_cache:
           key: 1-gems-{{ checksum "android/Gemfile.lock" }}
       
-      - run: bundle check || bundle install --path android/vendor/bundle
+      - run: bundle install --path android/vendor/bundle
       - save_cache:
           key: 1-gems-{{ checksum "android/Gemfile.lock" }}
           paths:
