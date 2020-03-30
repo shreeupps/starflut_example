@@ -2,9 +2,7 @@ version: 2
 jobs:
   build:
     docker:
-      - image: circleci/ruby:2.6.0-node
-      environment:
-        BUNDLER_VERSION: 2.0.1
+      - image: circleci/flutter
     #steps:
     # - checkout
     # - run: flutter doctor
