@@ -26,7 +26,7 @@ jobs:
             gem update --system
             gem install bundler
           name1: fastlane
-          command: |
+          command1: |
             cd android
             bundle exec fastlane env
       - store_artifacts:
