@@ -24,7 +24,7 @@ jobs:
           name: fastlane
           command: |
             cd android
-            bundle exec fastlane beta_circleci
+            
       - store_artifacts:
           path: android/output
       - store_test_results:
