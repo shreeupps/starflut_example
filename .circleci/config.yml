@@ -15,7 +15,7 @@ jobs:
       #- save_cache:
       #    key: 1-gems-{{ checksum "Gemfile.lock" }}
       #    paths:
-            - vendor/bundle
+            #- vendor/bundle
       - run:
           name: fastlane
           command: bundle exec fastlane $FASTLANE_LANE
