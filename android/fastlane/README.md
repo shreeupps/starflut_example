@@ -21,9 +21,9 @@ or alternatively using `brew cask install fastlane`
 fastlane android test
 ```
 Runs all the tests
-### android before_all
+### android setup_circle_ci
 ```
-fastlane android before_all
+fastlane android setup_circle_ci
 ```
 
 ### android promoteToProd
