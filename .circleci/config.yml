@@ -21,6 +21,10 @@ jobs:
           paths:
             - android/vendor/bundle
       - run:
+          name: install dependencies
+          command: |
+            gem update --system
+            gem install bundler
           name: fastlane
           command: |
             cd android
