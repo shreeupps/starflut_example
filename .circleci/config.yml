@@ -25,7 +25,7 @@ jobs:
           command: |
             gem update --system
             gem install bundler
-          name: fastlane
+          name1: fastlane
           command: |
             cd android
             bundle exec fastlane env
