@@ -8,16 +8,17 @@ jobs:
     # - run: flutter doctor
     #  - run: flutter test 
     #  - run: flutter -v build apk
+    
     steps:
-      - checkout
-      - restore_cache:
-          key: 1-gems-{{ checksum "Gemfile.lock" }}
-      - run: cd android
-      - run: bundle check || bundle install --path vendor/bundle
-      - save_cache:
-          key: 1-gems-{{ checksum "Gemfile.lock" }}
-          paths:
-            - vendor/bundle
+      #- checkout
+      #- restore_cache:
+      #    key: 1-gems-{{ checksum "Gemfile.lock" }}
+      #- run: cd android
+      #- run: bundle check || bundle install --path vendor/bundle
+      #- save_cache:
+      #    key: 1-gems-{{ checksum "Gemfile.lock" }}
+      #    paths:
+      #      - vendor/bundle
       - run:
           name: fastlane
           command: cd android; bundle exec fastlane $FASTLANE_LANE
