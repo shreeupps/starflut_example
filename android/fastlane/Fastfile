@@ -21,6 +21,10 @@ platform :android do
     gradle(task: "test")
   end
 
+  lane :setup_circle_ci do
+	setup_circle_ci
+  end
+
 #  desc "Submit a new Beta Build to Crashlytics Beta"
 #  lane :beta do
 #    gradle(task: "clean assembleRelease")

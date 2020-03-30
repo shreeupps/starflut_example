@@ -15,11 +15,17 @@
 buildscript {
     repositories {
         google()
+        maven {
+            url 'https://dl.google.com/dl/android/maven2'
+        }
         jcenter()
     }
 
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.2.1'
+        classpath 'com.keagan.flutter_python.build:gradle:4.10.2'
+//        testCompile 'org.testng:testng:6.10'
+//        compile group: 'com.keagan.flutter_python', name: 'reports-global', version: '1.0.0'
+
 //        androidTestImplementation 'androidx.test:runner:1.1.0'
 //       androidTestUtil 'androidx.test:orchestrator:1.1.0'
 
@@ -27,7 +33,16 @@ buildscript {
 }
 
 allprojects {
+    apply plugin: 'java'
+    version '0.1'
     repositories {
+        mavenCentral()
+        maven {
+            url 'http://mvnrepository.com/maven2'
+        }
+        maven {
+            url 'http://download.java.net/maven/2'
+        }
         google()
         jcenter()
     }
@@ -38,7 +53,24 @@ subprojects {
     project.buildDir = "${rootProject.buildDir}/${project.name}"
 }
 subprojects {
-    project.evaluationDependsOn(':app')
+    dependencies {
+        project.evaluationDependsOn(':app')
+        compile 'javax.inject:javax.inject:1'
+        compile 'org.springframework:spring-context:4.1.4.RELEASE'
+        compile 'org.springframework:spring-core:4.1.4.RELEASE'
+        compile 'org.springframework:spring-beans:4.1.4.RELEASE'
+        compile 'commons-logging:commons-logging:1.2'
+        testCompile 'org.springframework:spring-test:4.1.4.RELEASE'
+        testCompile 'org.testng:testng:6.1.1'
+    }
+    test {
+        // enable TestNG support (default is JUnit)
+        useTestNG()
+    }
+//    dependencies {
+
+//        testCompile 'org.testng:testng:6.10'
+//    }
 }
 
 task clean(type: Delete) {

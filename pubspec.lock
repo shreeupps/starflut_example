@@ -145,7 +145,7 @@ packages:
   starflut:
     dependency: "direct dev"
     description:
-      path: "C:\\Users\\jyoth\\ashish\\Bitbucket\\matchme\\starflut_example\\starflut"
+      path: "C:/Users/jyoth/ashish/Bitbucket/matchme/starflut_example/starflut/"
       relative: false
     source: path
     version: "0.6.0"

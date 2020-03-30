@@ -1,0 +1,51 @@
+2020-03-28T09:00:25.865Z INFO webdriverio: Initiate new session using the webdriver protocol
+2020-03-28T09:00:25.888Z INFO webdriver: [POST] http://localhost:4723/wd/hub/session
+2020-03-28T09:00:25.888Z INFO webdriver: DATA { capabilities: 
+   { alwaysMatch: 
+      { platformName: 'Android',
+        platformVersion: '10',
+        deviceName: 'Android Emulator',
+        app: 'C:/Users/jyoth/ashish/Bitbucket/matchme/starflut_example/android/app/debug/app-debug.apk',
+        appPackage: 'com.keagan.flutter_python',
+        appActivity: 'com.keagan.flutter_python.MainActivity',
+        automationName: 'UiAutomator2' },
+     firstMatch: [ {} ] },
+  desiredCapabilities: 
+   { platformName: 'Android',
+     platformVersion: '10',
+     deviceName: 'Android Emulator',
+     app: 'C:/Users/jyoth/ashish/Bitbucket/matchme/starflut_example/android/app/debug/app-debug.apk',
+     appPackage: 'com.keagan.flutter_python',
+     appActivity: 'com.keagan.flutter_python.MainActivity',
+     automationName: 'UiAutomator2' } }
+2020-03-28T09:00:54.336Z INFO webdriver: COMMAND findElement("class name", "android.widget.EditText")
+2020-03-28T09:00:54.337Z INFO webdriver: [POST] http://localhost:4723/wd/hub/session/f6ce6243-b99b-433e-a81c-4dea19b619f8/element
+2020-03-28T09:00:54.337Z INFO webdriver: DATA { using: 'class name', value: 'android.widget.EditText' }
+2020-03-28T09:00:54.536Z INFO webdriver: RESULT { error: 'no such element',
+  message: 'An element could not be located on the page using the given search parameters.',
+  stacktrace: 'NoSuchElementError: An element could not be located on the page using the given search parameters.\n    at AndroidUiautomator2Driver.findElOrEls (C:\\Program Files\\Appium\\resources\\app\\node_modules\\appium\\node_modules\\appium-android-driver\\lib\\commands\\find.js:75:11)' }
+2020-03-28T09:00:54.604Z DEBUG webdriverio: command setValue was called on an element ("android.widget.EditText") that wasn't found, waiting for it...
+2020-03-28T09:00:54.605Z INFO webdriver: COMMAND findElements("class name", "android.widget.EditText")
+2020-03-28T09:00:54.605Z INFO webdriver: [POST] http://localhost:4723/wd/hub/session/f6ce6243-b99b-433e-a81c-4dea19b619f8/elements
+2020-03-28T09:00:54.605Z INFO webdriver: DATA { using: 'class name', value: 'android.widget.EditText' }
+2020-03-28T09:00:54.623Z INFO webdriver: RESULT []
+2020-03-28T09:00:55.106Z INFO webdriver: COMMAND findElements("class name", "android.widget.EditText")
+2020-03-28T09:00:55.106Z INFO webdriver: [POST] http://localhost:4723/wd/hub/session/f6ce6243-b99b-433e-a81c-4dea19b619f8/elements
+2020-03-28T09:00:55.107Z INFO webdriver: DATA { using: 'class name', value: 'android.widget.EditText' }
+2020-03-28T09:00:56.227Z INFO webdriver: RESULT []
+2020-03-28T09:00:56.235Z INFO webdriver: COMMAND findElements("class name", "android.widget.EditText")
+2020-03-28T09:00:56.235Z INFO webdriver: [POST] http://localhost:4723/wd/hub/session/f6ce6243-b99b-433e-a81c-4dea19b619f8/elements
+2020-03-28T09:00:56.236Z INFO webdriver: DATA { using: 'class name', value: 'android.widget.EditText' }
+2020-03-28T09:00:56.316Z INFO webdriver: RESULT []
+2020-03-28T09:00:56.374Z INFO webdriver: COMMAND findElements("class name", "android.widget.EditText")
+2020-03-28T09:00:56.374Z INFO webdriver: [POST] http://localhost:4723/wd/hub/session/f6ce6243-b99b-433e-a81c-4dea19b619f8/elements
+2020-03-28T09:00:56.374Z INFO webdriver: DATA { using: 'class name', value: 'android.widget.EditText' }
+2020-03-28T09:00:56.438Z INFO webdriver: RESULT []
+2020-03-28T09:00:56.605Z INFO webdriver: COMMAND findElements("class name", "android.widget.EditText")
+2020-03-28T09:00:56.605Z INFO webdriver: [POST] http://localhost:4723/wd/hub/session/f6ce6243-b99b-433e-a81c-4dea19b619f8/elements
+2020-03-28T09:00:56.605Z INFO webdriver: DATA { using: 'class name', value: 'android.widget.EditText' }
+2020-03-28T09:00:56.688Z INFO webdriver: RESULT []
+2020-03-28T09:00:57.106Z INFO webdriver: COMMAND findElements("class name", "android.widget.EditText")
+2020-03-28T09:00:57.106Z INFO webdriver: [POST] http://localhost:4723/wd/hub/session/f6ce6243-b99b-433e-a81c-4dea19b619f8/elements
+2020-03-28T09:00:57.106Z INFO webdriver: DATA { using: 'class name', value: 'android.widget.EditText' }
+2020-03-28T09:00:57.150Z INFO webdriver: RESULT []
