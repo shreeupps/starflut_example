@@ -5,11 +5,11 @@ jobs:
       - image: cirrusci/flutter
     environment:
         BUNDLER_VERSION: 2.0.1
-    steps:
-     - checkout
-     - run: flutter doctor
-      - run: flutter test 
-      - run: flutter -v build apk
+    #steps:
+    #    - checkout
+    #    - run: flutter doctor
+    #    - run: flutter test 
+    #    - run: flutter -v build apk
     
     steps:
       - checkout
