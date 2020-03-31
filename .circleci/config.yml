@@ -38,8 +38,8 @@ jobs:
     shell: /bin/bash --login -o pipefail
     steps:
       - checkout
-      - run: cd android
-      - run: bundle install
+      #- run: cd android
+      #- run: bundle install
       - run:
           name: Fastlane
           command: bundle exec fastlane $FASTLANE_LANE
