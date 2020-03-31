@@ -3,6 +3,8 @@ jobs:
   build:
     docker:
       - image: cirrusci/flutter
+    environment:
+        BUNDLER_VERSION: 2.1.4
     #steps:
     # - checkout
     # - run: flutter doctor
@@ -24,7 +26,6 @@ jobs:
           name: fastlane
           command: |
             cd android
-            bundle update --bundler
             bundle exec fastlane test
       - store_artifacts:
           path: android/output
