@@ -2,7 +2,7 @@ version: 2
 jobs:
   build:
     docker:
-      - image: cirrusci/ruby:2.6.0-node
+      - image: cirrusci/flutter
     environment:
         BUNDLER_VERSION: 2.0.1
     #steps:
