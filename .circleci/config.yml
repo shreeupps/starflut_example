@@ -24,6 +24,7 @@ jobs:
           name: fastlane
           command: |
             cd android
+            bundle update --bundler
             bundle exec fastlane test
       - store_artifacts:
           path: android/output
