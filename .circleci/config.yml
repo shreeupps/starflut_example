@@ -12,7 +12,7 @@ jobs:
     steps:
       - checkout
       - run: cd android
-      - run: docker build 
+      - run:  bundle install
       - restore_cache:
           key: 1-gems-{{ checksum "android/Gemfile.lock" }}
       
