@@ -38,6 +38,7 @@ jobs:
     shell: /bin/bash --login -o pipefail
     steps:
       - checkout
+      - run: cd android
       - run: bundle install
       - run:
           name: Fastlane
