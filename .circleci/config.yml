@@ -17,7 +17,7 @@ jobs:
       - restore_cache:
           key: 1-gems-{{ checksum "android/Gemfile.lock" }}
       
-      #- run: bundle check || bundle install --path android/vendor/bundle
+      - run: bundle check || bundle install --path android/vendor/bundle
       - save_cache:
           key: 1-gems-{{ checksum "android/Gemfile.lock" }}
           paths:
@@ -26,7 +26,7 @@ jobs:
           name: fastlane
           command: |
             cd android
-            #bundle exec fastlane test
+            bundle exec fastlane test
       - store_artifacts:
           path: android/output
       - store_test_results:
