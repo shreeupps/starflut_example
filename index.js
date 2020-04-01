@@ -1,5 +1,7 @@
 const wdio = require("webdriverio");
 const assert = require("assert");
+var java  = require('java');
+var extReportDemo = java.import("test.ExtentReportDemo.java.ExtentReportDemo");
 
 const opts = {
   port: 4723,
@@ -16,20 +18,19 @@ const opts = {
 
 
 async function main () {
-//    var java  = require('java');
-//    var extReportDemo = java.import('test.ExtentReportDemo.java');
-//    extReportDemo.reportSetup();
 
-//  test = extent.createTest("MyFirstTest", "Sample description");
-  const client = await wdio.remote(opts);
+    extReportDemo.reportSetup();
+
+    test = extent.createTest("MyFirstTest", "Sample description");
+    const client = await wdio.remote(opts);
 //  test.log(Status.INFO, "This step shows usage of log(status, details)");
 
 //  const field = await client.$("android.widget.EditText");
-  await field.setValue("Hello World!");
-  const value = await field.getText();
-  assert.equal(value,"Hello world ");
+    await field.setValue("Hello World!");
+    const value = await field.getText();
+    assert.equal(value,"Hello world ");
 //  main.report.writereport()
-  await client.deleteSession();	
+    await client.deleteSession();
 }
 
 main();
