@@ -2,9 +2,9 @@ version: 2
 jobs:
   build:
     docker:
-      - image: cirrusci/flutter/ruby:2.6.0-node
+      - image: cirrusci/flutter
     environment:
-        BUNDLER_VERSION: 2.0.1
+        BUNDLER_VERSION: 2.1.4
     #steps:
     #    - checkout
     #    - run: flutter doctor
