@@ -42,6 +42,8 @@ jobs:
           name: Init fastlane supply
           command: |
             cd android
+            echo 'export BUNDLER_VERSION=$(cat Gemfile.lock | tail -1 | tr -d " ")' >> $BASH_ENV
+            source $BASH_ENV
             bundle exec fastlane supply init
       - run:
           name: Download ci's data
