@@ -11,25 +11,41 @@ jobs:
     #    - run: flutter test 
     #    - run: flutter -v build apk
     
+#    steps:
+#      - checkout
+#      - run: cd android
+#      - restore_cache:
+#          key: 1-gems-{{ checksum "android/Gemfile.lock" }}
+#
+#      #- run: bundle check || bundle install --path android/vendor/bundle
+#      - save_cache:
+#          key: 1-gems-{{ checksum "android/Gemfile.lock" }}
+#          paths:
+#            - android/vendor/bundle
+#      - run:
+#          name: fastlane
+#          command: |
+#            cd android
+#            bundle exec fastlane supply
+#      - store_artifacts:
+#          path: android/output
+#      - store_test_results:
+#          path: android/output/scan
+
     steps:
       - checkout
-      - run: cd android
       - restore_cache:
-          key: 1-gems-{{ checksum "android/Gemfile.lock" }}
-      
-      #- run: bundle check || bundle install --path android/vendor/bundle
-      - save_cache:
-          key: 1-gems-{{ checksum "android/Gemfile.lock" }}
-          paths:
-            - android/vendor/bundle
+        key: jars-{{ checksum "build.gradle" }}-{{ checksum  "app/build.gradle" }}
       - run:
-          name: fastlane
-          command: |
-            cd android
-            bundle exec fastlane supply
-      - store_artifacts:
-          path: android/output
-      - store_test_results:
-          path: android/output/scan
-
-    
+          name: Init fastlane supply
+          command: bundle exec fastlane supply init
+      - run:
+          name: Download ci's data
+          command: ./ci/download_ci_data.sh
+      - run:
+          name: Deploy the app to the internal track
+          command: bundle exec fastlane deploy_internal
+      - save_cache:
+          paths:
+            - ~/.gradle
+          key: jars-{{ checksum "build.gradle" }}-{{ checksum  "app/build.gradle" }}
