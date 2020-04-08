@@ -7,13 +7,13 @@ void main() => runApp( SPR() );
 class SPR extends StatefulWidget
 {
   @override
-  State<StatefulWidget> createState() => dash();
+  State<StatefulWidget> createState() => Dash();
 
 }
-class dash extends State< SPR >
+class Dash extends State< SPR >
 {
 
-   var data;
+  var data;
 
   Future<void> testCallPython()
   async {

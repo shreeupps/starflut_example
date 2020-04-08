@@ -1,0 +1,4 @@
+#Wed Apr 08 12:17:16 IST 2020
+base.0=C\:\\Users\\jyoth\\ashish\\Bitbucket\\matchme\\starflut_example\\build\\app\\intermediates\\dex\\release\\out\\classes.dex
+path.0=classes.dex
+renamed.0=classes.dex

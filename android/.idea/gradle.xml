@@ -11,7 +11,7 @@
           <set>
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/app" />
-            <option value="C:/starcore_for_flutter/starflut/android" />
+            <option value="$PROJECT_DIR$/../starflut/android" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />
