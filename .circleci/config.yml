@@ -38,21 +38,16 @@ jobs:
           cd android
       - restore_cache:
           key: 1-gems-{{ checksum "android/Gemfile.lock" }}
-      - run:
-          name: Init fastlane supply
-          command: |
-            cd android
-            echo 'export BUNDLER_VERSION=$(cat Gemfile.lock | tail -1 | tr -d " ")' >> $BASH_ENV
-            source $BASH_ENV
-            bundle exec fastlane supply init
-      - run:
-          name: Download ci's data
-          command: ./ci/download_ci_data.sh
+#      - run:
+#          name: Init fastlane supply
+#          command: |
+#            cd android
+#            bundle exec fastlane supply init
       - run:
           name: Deploy the app to the internal track
           command: |
             cd android
-            bundle exec fastlane deploy_internal
+            bundle exec fastlane supply
       - save_cache:
           key: 1-gems-{{ checksum "android/Gemfile.lock" }}
           paths:
