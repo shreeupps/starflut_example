@@ -34,8 +34,9 @@ jobs:
 
     steps:
       - checkout
+      - run: cd android
       - restore_cache:
-        key: jars-{{ checksum "build.gradle" }}-{{ checksum  "app/build.gradle" }}
+        key: 1-gems-{{ checksum "android/Gemfile.lock" }}
       - run:
           name: Init fastlane supply
           command: bundle exec fastlane supply init
@@ -46,6 +47,6 @@ jobs:
           name: Deploy the app to the internal track
           command: bundle exec fastlane deploy_internal
       - save_cache:
+          key: 1-gems-{{ checksum "android/Gemfile.lock" }}
           paths:
-            - ~/.gradle
-          key: jars-{{ checksum "build.gradle" }}-{{ checksum  "app/build.gradle" }}
+              - android/vendor/bundle
