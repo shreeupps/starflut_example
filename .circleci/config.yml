@@ -44,18 +44,18 @@ jobs:
             sudo gem update --system
             echo 'export BUNDLER_VERSION=$(cat Gemfile.lock | tail -1 | tr -d " ")' >> $BASH_ENV
             source $BASH_ENV
-            sudo gem install bundler
+            sudo gem install bundler 2.0.1
       - run:
           name: Do Anything Bundler Related
-          command: bundler -v
+          command: sudo bundler -v
       - run:
           name: Deploy the app to the internal track
           command: |
-            pwd
-            bundle -v
-            gem uninstall bundler
-            bundle -v
-            gem install bundler --version 2.0.1
+#            pwd
+#            bundle -v
+#            gem uninstall bundler
+#            bundle -v
+#            gem install bundler --version 2.0.1
             bundle exec fastlane supply
       - save_cache:
           key: 1-gems-{{ checksum "android/Gemfile.lock" }}
