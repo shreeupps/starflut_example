@@ -47,6 +47,7 @@ jobs:
           name: Deploy the app to the internal track
           command: |
             cd android
+            bundle -v
             bundle exec fastlane supply
       - save_cache:
           key: 1-gems-{{ checksum "android/Gemfile.lock" }}
