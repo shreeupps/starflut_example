@@ -46,6 +46,7 @@ jobs:
       - run:
           name: Deploy the app to the internal track
           command: |
+            pwd
             bundle -v
             gem install bundler -v 2.0.1
             bundle exec fastlane supply
