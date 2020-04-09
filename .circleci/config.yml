@@ -43,8 +43,8 @@ jobs:
 #      - store_test_results:
 #          path: android/output/scan
 
-#    steps:
-#      - checkout
+    steps:
+      - checkout
 #      - run:
 #          cd android
       #- restore_cache:
@@ -55,8 +55,6 @@ jobs:
 #            cd android
 #            bundle exec fastlane supply init
       - run:
-          name: Install fastlane
-          command:
           name: Deploy the app to the internal track
           command: |
             pwd
