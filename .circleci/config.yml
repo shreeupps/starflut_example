@@ -46,7 +46,7 @@ jobs:
       - run:
           name: Deploy the app to the internal track
           command: |
-            cd android
+            cd C:\Users\jyoth\ashish\Bitbucket\matchme\starflut_example\android
             bundle -v
             gem install bundler -v 2.0.1
             bundle exec fastlane supply
