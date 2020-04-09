@@ -49,7 +49,6 @@ jobs:
             cd android
             echo 'export BUNDLER_VERSION=$(cat Gemfile.lock | tail -1 | tr -d " ")' >> $BASH_ENV
             source $BASH_ENV
-#            gem install bundler
             bundle exec fastlane supply
       - save_cache:
           key: 1-gems-{{ checksum "android/Gemfile.lock" }}
