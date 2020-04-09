@@ -48,7 +48,6 @@ jobs:
           command: |
             cd android
             bundle -v
-#            gem install bundler -v 2.0.1
             bundle exec fastlane supply
       - save_cache:
           key: 1-gems-{{ checksum "android/Gemfile.lock" }}
