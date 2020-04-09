@@ -36,8 +36,8 @@ jobs:
       - checkout
       - run:
           cd android
-      - restore_cache:
-          key: 1-gems-{{ checksum "android/Gemfile.lock" }}
+      #- restore_cache:
+      #    key: 1-gems-{{ checksum "android/Gemfile.lock" }}
 #      - run:
 #          name: Init fastlane supply
 #          command: |
