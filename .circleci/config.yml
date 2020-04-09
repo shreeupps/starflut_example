@@ -10,7 +10,18 @@ jobs:
     #    - run: flutter doctor
     #    - run: flutter test 
     #    - run: flutter -v build apk
-    
+          - checkout
+          - run: echo $GCLOUD_KEY > ${HOME}/gcloud-service-key.json
+          - run: cat  ${HOME}/gcloud-service-key.json
+          - run: flutter doctor
+          - run: flutter test
+          - run: flutter -v build apk
+          - run: wget 'https://dl.google.com/dl/cloudsdk/channels/rapid/downloads/google-cloud-sdk-195.0.0-linux-x86_64.tar.gz'
+          - run: tar -xvf google-cloud-sdk*
+          - run: ./google-cloud-sdk/bin/gcloud auth activate-service-account --key-file=${HOME}/gcloud-service-key.json
+          - run: ./google-cloud-sdk/bin/gcloud config set project 'your proejct id'
+          - run: ./google-cloud-sdk/bin/gcloud --quiet components update
+          - run: bash .circleci/upload.sh
 #    steps:
 #      - checkout
 #      - run: cd android
@@ -32,10 +43,10 @@ jobs:
 #      - store_test_results:
 #          path: android/output/scan
 
-    steps:
-      - checkout
-      - run:
-          cd android
+#    steps:
+#      - checkout
+#      - run:
+#          cd android
       #- restore_cache:
       #    key: 1-gems-{{ checksum "android/Gemfile.lock" }}
 #      - run:
@@ -43,14 +54,14 @@ jobs:
 #          command: |
 #            cd android
 #            bundle exec fastlane supply init
-      - run:
-          name: Deploy the app to the internal track
-          command: |
-            pwd
-            bundle -v
-            gem install bundler -v 2.0.1
-            bundle exec fastlane supply
-      - save_cache:
-          key: 1-gems-{{ checksum "android/Gemfile.lock" }}
-          paths:
-              - android/vendor/bundle
+#      - run:
+#          name: Deploy the app to the internal track
+#          command: |
+#            pwd
+#            bundle -v
+#            gem install bundler -v 2.0.1
+#            bundle exec fastlane supply
+#      - save_cache:
+#          key: 1-gems-{{ checksum "android/Gemfile.lock" }}
+#          paths:
+#              - android/vendor/bundle
