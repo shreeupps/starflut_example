@@ -39,6 +39,16 @@ jobs:
 #            cd android
 #            bundle exec fastlane supply init
       - run:
+          name: Force Bundler Version
+          command: |
+            sudo gem update --system
+            echo 'export BUNDLER_VERSION=$(cat Gemfile.lock | tail -1 | tr -d " ")' >> $BASH_ENV
+            source $BASH_ENV
+            gem install bundler
+      - run:
+          name: Do Anything Bundler Related
+          command: bundler -v
+      - run:
           name: Deploy the app to the internal track
           command: |
             pwd
