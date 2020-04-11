@@ -49,7 +49,6 @@ jobs:
       - run:
           name: Do Anything Bundler Related
           command: |
-            cd android
             sudo bundler -v
       - run:
           name: Deploy the app to the internal track
