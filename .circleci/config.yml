@@ -56,6 +56,8 @@ jobs:
           command: |
             cd android
             sudo bundle install
+            bundle update --bundler
+            sudo gem install bundler
             bundle exec fastlane update_plugins
             bundle exec fastlane supply
       - save_cache:
