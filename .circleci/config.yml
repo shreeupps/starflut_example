@@ -47,8 +47,7 @@ jobs:
             source $BASH_ENV
             sudo gem install bundler
             sudo bundle install
-            cd ..
-            bundle exec fastlane supply
+            sudo bundle exec fastlane supply
 #      - run:
 #          name: Do Anything Bundler Related
 #          command: |
