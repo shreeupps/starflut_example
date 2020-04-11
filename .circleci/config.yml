@@ -46,6 +46,7 @@ jobs:
             echo 'export BUNDLER_VERSION=$(cat Gemfile.lock | tail -1 | tr -d " ")' >> $BASH_ENV
             source $BASH_ENV
             sudo gem install bundler
+            sudo bundle install
       - run:
           name: Do Anything Bundler Related
           command: |
